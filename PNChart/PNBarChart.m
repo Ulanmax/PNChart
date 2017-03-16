@@ -224,16 +224,10 @@
             if (_barWidth) {
                 barWidth = _barWidth;
                 barXPosition = index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth /2.0 - _barWidth /2.0;
-            }else{
-                barXPosition = index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth * 0.25;
-                if (_showLabel) {
-                    barWidth = _xLabelWidth * 0.5;
-                    
-                }
-                else {
-                    barWidth = _xLabelWidth * 0.6;
-                    
-                }
+            } else {
+                CGFloat piece = (self.frame.size.width - 20 - _chartMarginLeft - _chartMarginRight) / (_yValues.count * 3 - 1);
+                barWidth = piece * 2;
+                barXPosition = index * (barWidth + piece) + _chartMarginLeft + 10;
             }
             
             bar = [[PNBar alloc] initWithFrame:CGRectMake(barXPosition, //Bar X position
